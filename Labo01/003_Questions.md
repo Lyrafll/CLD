@@ -12,7 +12,6 @@ Sources:
 
 - [AWS EC2 High Memory Instances](https://aws.amazon.com/ec2/instance-types/high-memory/)
 
-  
 
 **How long did it take for the new instance to get into the _running_ state?**
 
@@ -22,11 +21,9 @@ The setup process typically lasted between 10 to 20 seconds. It's worth noting t
 
 Sources:
 
- [EC2 Instance lifecycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
+- [EC2 Instance lifecycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
 
-[Blog comparing launch-times](https://www.martysweet.co.uk/ec2-launch-times/)
-
-
+- [Blog comparing launch-times](https://www.martysweet.co.uk/ec2-launch-times/)
 
 **Using the commands to explore the machine listed earlier, respond to the following questions and explain how you came to the answer:**
 
