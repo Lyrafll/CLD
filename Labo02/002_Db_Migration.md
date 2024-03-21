@@ -15,7 +15,7 @@ cat /home/bitnami/bitnami_credentials
 Welcome to the Bitnami package for Drupal
 
 ******************************************************************************
-The default username and password is 'user' and 'Rgg7gCXM@.4A'.
+The default username and password is 'user' and '[PASSWORD]'.
 ******************************************************************************
 
 You can also use this password to access the databases and any other component the stack includes.
@@ -155,3 +155,9 @@ mysql -h dbi-devopsteam11.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u bn_drupal 
 ```
 
 * Repeat the procedure to enable the instance on subnet 2 to also talk to your RDS instance.
+
+```bash
+mysql -h dbi-devopsteam11.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u admin -p'[PASSWORD]' -e "GRANT ALL PRIVILEGES ON bitnami_drupal.* TO 'bn_drupal'@'10.0.11.128/255.255.255.240' IDENTIFIED BY '[PASSWORD]';"
+
+password of bitnami_drupal is the same
+```
