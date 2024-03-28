@@ -17,7 +17,7 @@ Note : stop the instance before
 [INPUT]
 
 aws ec2 create-image \
-    --instance-id i-033f6122a15ed98cb \
+    --instance-id i-0c9b0d1f7f81bbd0c \
     --name "AMI_DRUPAL_DEVOPSTEAM11_LABO02_RDS" \
     --description "AMI_DRUPAL_DEVOPSTEAM11_LABO02_RDS" \
     --tag-specifications ResourceType=image,Tags=[{Key=Name,Value=AMI_DRUPAL_DEVOPSTEAM11_LABO02_RDS}]
@@ -25,7 +25,7 @@ aws ec2 create-image \
 [OUTPUT]
 
 {
-    "ImageId": "ami-0d2fbe56c551919d6"
+    "ImageId": "ami-0c95051a2e9c58c0c"
 }
 ```
 
@@ -43,7 +43,7 @@ aws ec2 create-image \
 ```bash
 [INPUT]
 aws ec2 run-instances \
-   --image-id ami-0d2fbe56c551919d6 \
+   --image-id ami-0c95051a2e9c58c0c \
    --count 1 \
    --instance-type t3.micro \
    --key-name CLD_KEY_DRUPAL_DEVOPSTEAM11 \
@@ -59,11 +59,11 @@ aws ec2 run-instances \
     "Instances": [
         {
             "AmiLaunchIndex": 0,
-            "ImageId": "ami-0d2fbe56c551919d6",
-            "InstanceId": "i-03149d6d8ac989c16",
+            "ImageId": "ami-0c95051a2e9c58c0c",
+            "InstanceId": "i-0f1c4b03f59b1669e",
             "InstanceType": "t3.micro",
             "KeyName": "CLD_KEY_DRUPAL_DEVOPSTEAM11",
-            "LaunchTime": "2024-03-28T14:04:19+00:00",
+            "LaunchTime": "2024-03-28T16:12:15+00:00",
             "Monitoring": {
                 "State": "disabled"
             },
@@ -85,15 +85,15 @@ aws ec2 run-instances \
             "VpcId": "vpc-03d46c285a2af77ba",
             "Architecture": "x86_64",
             "BlockDeviceMappings": [],
-            "ClientToken": "fba3d92f-d50f-4ed5-988b-51f5ae3418ea",
+            "ClientToken": "83b56936-5e21-4110-8cdc-f1d205614efa",
             "EbsOptimized": false,
             "EnaSupport": true,
             "Hypervisor": "xen",
             "NetworkInterfaces": [
                 {
                     "Attachment": {
-                        "AttachTime": "2024-03-28T14:04:19+00:00",
-                        "AttachmentId": "eni-attach-05c15cbad68b1d52a",
+                        "AttachTime": "2024-03-28T16:12:15+00:00",
+                        "AttachmentId": "eni-attach-07677981a63ae388f",
                         "DeleteOnTermination": true,
                         "DeviceIndex": 0,
                         "Status": "attaching",
@@ -107,8 +107,8 @@ aws ec2 run-instances \
                         }
                     ],
                     "Ipv6Addresses": [],
-                    "MacAddress": "0a:d0:63:97:9a:71",
-                    "NetworkInterfaceId": "eni-073edee3c60558c90",
+                    "MacAddress": "0a:4d:35:17:8c:0d",
+                    "NetworkInterfaceId": "eni-0041169ba57a9064b",
                     "OwnerId": "709024702237",
                     "PrivateIpAddress": "10.0.11.140",
                     "PrivateIpAddresses": [
@@ -174,7 +174,7 @@ aws ec2 run-instances \
         }
     ],
     "OwnerId": "709024702237",
-    "ReservationId": "r-0941226a9766c7252"
+    "ReservationId": "r-0968ba424a9c6e1e1"
 }
 ```
 
@@ -225,8 +225,41 @@ bitnami@ip-10-0-11-140:~$ mariadb -h dbi-devopsteam11.cshki92s4w5p.eu-west-3.rds
 ### Check HTTP Accesses
 
 ```bash
+[INPUT]
 curl -I http://localhost:2230
+
+[OUTPUT]
+HTTP/1.1 200 OK
+Date: Thu, 28 Mar 2024 15:59:43 GMT
+Server: Apache
+Cache-Control: must-revalidate, no-cache, private
+X-Drupal-Dynamic-Cache: MISS
+Content-language: en
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Expires: Sun, 19 Nov 1978 05:00:00 GMT
+X-Generator: Drupal 10 (https://www.drupal.org)
+X-Drupal-Cache: HIT
+Content-Length: 16554
+Content-Type: text/html; charset=UTF-8
+
+[INPUT]
 curl -I http://localhost:2231
+
+[OUTPUT]
+HTTP/1.1 200 OK
+Date: Thu, 28 Mar 2024 16:14:35 GMT
+Server: Apache
+Cache-Control: must-revalidate, no-cache, private
+X-Drupal-Dynamic-Cache: MISS
+Content-language: en
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Expires: Sun, 19 Nov 1978 05:00:00 GMT
+X-Generator: Drupal 10 (https://www.drupal.org)
+X-Drupal-Cache: MISS
+Content-Length: 16554
+Content-Type: text/html; charset=UTF-8
 ```
 
 ### Read and write test through the web app
