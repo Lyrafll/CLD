@@ -54,25 +54,31 @@ mariadb-dump -u root -p'[PASSWORD]' --databases bitnami_drupal > drupal_db.sql
 
 [OUTPUT]
 none, but drupal_db.sql created
+
+ls drupal_db.sql 
+drupal_db.sql
 ```
 
-### Create the new Data base on RDS
+### Create the new Database on RDS
 
 ```sql
 [INPUT]
+mysql -h dbi-devopsteam11.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u admin -p
 CREATE DATABASE bitnami_drupal;
-```
-note : Can't create database 'bitnami_drupal'; database exists
 
+[OUTPUT]
+Query OK, 1 row affected (0.001 sec)
+
+```
 ### [Import dump in RDS db-instance](https://mariadb.com/kb/en/restoring-data-from-dump-files/)
 
 Note : you can do this from the Drupal Instance. Do not forget to set the "-h" parameter.
 
 ```sql
 [INPUT]
-mysql -h dbi-devopsteam11.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u admin -p'[PASSWORD]' < drupal_db.sql
+mariadb -h dbi-devopsteam11.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u admin -p'[PASSWORD]' bitnami_drupal < drupal_db.sql
 
-[OUTPUT]
+[NO OUTPUT]
 ```
 
 ### [Get the current Drupal connection string parameters](https://www.drupal.org/docs/8/api/database-api/database-configuration)
@@ -122,18 +128,19 @@ Note : only calls from both private subnets must be approved.
 ```sql
 [INPUT]
 mysql -h dbi-devopsteam11.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u admin -p'[PASSWORD]' -e "GRANT ALL PRIVILEGES ON bitnami_drupal.* TO 'bn_drupal'@'10.0.11.0/255.255.255.240' IDENTIFIED BY '[PASSWORD]';"
+[NO OUTPUT]
 ```
 
 ```sql
 //validation
 [INPUT]
 mysql -h dbi-devopsteam11.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u admin -p'[PASSWORD]' -e "SHOW GRANTS for 'bn_drupal'@'10.0.11.0/255.255.255.240';"
-[OUTPUT]
 
+[OUTPUT]
 +----------------------------------------------------------------------------------------------------------------------------------+
 | Grants for bn_drupal@10.0.11.0/255.255.255.240                                                                                   |
 +----------------------------------------------------------------------------------------------------------------------------------+
-| GRANT USAGE ON *.* TO `bn_drupal`@`10.0.11.0/255.255.255.240` IDENTIFIED BY PASSWORD '[PASSWORD]' |
+| GRANT USAGE ON *.* TO `bn_drupal`@`10.0.11.0/255.255.255.240` IDENTIFIED BY PASSWORD '[PASSWORD]'                                |
 | GRANT ALL PRIVILEGES ON `bitnami_drupal`.* TO `bn_drupal`@`10.0.11.0/255.255.255.240`                                            |
 +----------------------------------------------------------------------------------------------------------------------------------+
 ```
@@ -151,7 +158,6 @@ mysql -h dbi-devopsteam11.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u bn_drupal 
 | bitnami_drupal     |
 | information_schema |
 +--------------------+
-2 rows in set (0.001 sec)
 ```
 
 * Repeat the procedure to enable the instance on subnet 2 to also talk to your RDS instance.
@@ -160,4 +166,14 @@ mysql -h dbi-devopsteam11.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u bn_drupal 
 mysql -h dbi-devopsteam11.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u admin -p'[PASSWORD]' -e "GRANT ALL PRIVILEGES ON bitnami_drupal.* TO 'bn_drupal'@'10.0.11.128/255.255.255.240' IDENTIFIED BY '[PASSWORD]';"
 
 password of bitnami_drupal is the same
+
+mysql -h dbi-devopsteam11.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u admin -p'[PASSWORD]' -e "SHOW GRANTS for 'bn_drupal'@'10.0.11.128/255.255.255.240';"
+
++------------------------------------------------------------------------------------------------------------------------------------+
+| Grants for bn_drupal@10.0.11.128/255.255.255.240                                                                                   |
++------------------------------------------------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `bn_drupal`@`10.0.11.128/255.255.255.240` IDENTIFIED BY PASSWORD '[PASSWORD]'                                |
+| GRANT ALL PRIVILEGES ON `bitnami_drupal`.* TO `bn_drupal`@`10.0.11.128/255.255.255.240`                                            |
++------------------------------------------------------------------------------------------------------------------------------------+
+
 ```
