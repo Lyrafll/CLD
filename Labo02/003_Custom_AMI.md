@@ -18,14 +18,14 @@ Note : stop the instance before
 
 aws ec2 create-image \
     --instance-id i-033f6122a15ed98cb \
-    --name "AMI_PRIVATE_DRUPAL_DEVOPSTEAM11_LABO02_RDS" \
-    --description "AMI_PRIVATE_DRUPAL_DEVOPSTEAM11_LABO02_RDS" \
-    --tag-specifications ResourceType=image,Tags=[{Key=Name,Value=AMI_PRIVATE_DRUPAL_DEVOPSTEAM11_LABO02_RDS}]
+    --name "AMI_DRUPAL_DEVOPSTEAM11_LABO02_RDS" \
+    --description "AMI_DRUPAL_DEVOPSTEAM11_LABO02_RDS" \
+    --tag-specifications ResourceType=image,Tags=[{Key=Name,Value=AMI_DRUPAL_DEVOPSTEAM11_LABO02_RDS}]
 
 [OUTPUT]
 
 {
-    "ImageId": "ami-077228dfcd1788703"
+    "ImageId": "ami-0d2fbe56c551919d6"
 }
 ```
 
@@ -43,33 +43,32 @@ aws ec2 create-image \
 ```bash
 [INPUT]
 aws ec2 run-instances \
-   --image-id ami-077228dfcd1788703 \
+   --image-id ami-0d2fbe56c551919d6 \
    --count 1 \
    --instance-type t3.micro \
    --key-name CLD_KEY_DRUPAL_DEVOPSTEAM11 \
    --private-ip-address 10.0.11.140 \
    --security-group-ids sg-09866346f8d32d27d \
-   --subnet-id subnet-0e8f43d40d027c3b9 \
+   --subnet-id subnet-038104e68d83eeda0 \
    --tag-specifications ResourceType=instance,Tags=[{Key=Name,Value=EC2_PRIVATE_DRUPAL_DEVOPSTEAM11_B}] \
-   --placement AvailabilityZone=eu-west-3a
+   --placement AvailabilityZone=eu-west-3b
 
 [OUTPUT]
-
 {
     "Groups": [],
     "Instances": [
         {
             "AmiLaunchIndex": 0,
-            "ImageId": "ami-077228dfcd1788703",
-            "InstanceId": "i-0a4c2eb2f65ffb464",
+            "ImageId": "ami-0d2fbe56c551919d6",
+            "InstanceId": "i-03149d6d8ac989c16",
             "InstanceType": "t3.micro",
             "KeyName": "CLD_KEY_DRUPAL_DEVOPSTEAM11",
-            "LaunchTime": "2024-03-21T15:36:41+00:00",
+            "LaunchTime": "2024-03-28T14:04:19+00:00",
             "Monitoring": {
                 "State": "disabled"
             },
             "Placement": {
-                "AvailabilityZone": "eu-west-3a",
+                "AvailabilityZone": "eu-west-3b",
                 "GroupName": "",
                 "Tenancy": "default"
             },
@@ -82,19 +81,19 @@ aws ec2 run-instances \
                 "Name": "pending"
             },
             "StateTransitionReason": "",
-            "SubnetId": "subnet-0e8f43d40d027c3b9",
+            "SubnetId": "subnet-038104e68d83eeda0",
             "VpcId": "vpc-03d46c285a2af77ba",
             "Architecture": "x86_64",
             "BlockDeviceMappings": [],
-            "ClientToken": "f69b0ae0-0b9b-40e1-9fb9-1e0b53235143",
+            "ClientToken": "fba3d92f-d50f-4ed5-988b-51f5ae3418ea",
             "EbsOptimized": false,
             "EnaSupport": true,
             "Hypervisor": "xen",
             "NetworkInterfaces": [
                 {
                     "Attachment": {
-                        "AttachTime": "2024-03-21T15:36:41+00:00",
-                        "AttachmentId": "eni-attach-0d19f187ef3b1ba09",
+                        "AttachTime": "2024-03-28T14:04:19+00:00",
+                        "AttachmentId": "eni-attach-05c15cbad68b1d52a",
                         "DeleteOnTermination": true,
                         "DeviceIndex": 0,
                         "Status": "attaching",
@@ -108,8 +107,8 @@ aws ec2 run-instances \
                         }
                     ],
                     "Ipv6Addresses": [],
-                    "MacAddress": "06:f6:9a:b7:6a:93",
-                    "NetworkInterfaceId": "eni-03d0b285a800968c4",
+                    "MacAddress": "0a:d0:63:97:9a:71",
+                    "NetworkInterfaceId": "eni-073edee3c60558c90",
                     "OwnerId": "709024702237",
                     "PrivateIpAddress": "10.0.11.140",
                     "PrivateIpAddresses": [
@@ -120,7 +119,7 @@ aws ec2 run-instances \
                     ],
                     "SourceDestCheck": true,
                     "Status": "in-use",
-                    "SubnetId": "subnet-0e8f43d40d027c3b9",
+                    "SubnetId": "subnet-038104e68d83eeda0",
                     "VpcId": "vpc-03d46c285a2af77ba",
                     "InterfaceType": "interface"
                 }
@@ -175,7 +174,7 @@ aws ec2 run-instances \
         }
     ],
     "OwnerId": "709024702237",
-    "ReservationId": "r-0119d6d193673648f"
+    "ReservationId": "r-0941226a9766c7252"
 }
 ```
 
@@ -200,7 +199,6 @@ ssh bitnami@localhost -p 2226 -i "C:\Users\aurel\.ssh\CLD_KEY_DRUPAL_DEVOPSTEAM1
 bitnami@ip-10-0-11-10:~$ mariadb -h dbi-devopsteam11.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u bn_drupal -p'[PASSWORD]' -e "SHOW DATABASES;"
 
 [OUTPUT]
-
 +--------------------+
 | Database           |
 +--------------------+
@@ -216,7 +214,6 @@ bitnami@ip-10-0-11-10:~$ mariadb -h dbi-devopsteam11.cshki92s4w5p.eu-west-3.rds.
 bitnami@ip-10-0-11-140:~$ mariadb -h dbi-devopsteam11.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u bn_drupal -p'[PASSWORD]' -e "SHOW DATABASES;"
 
 [OUTPUT]
-
 +--------------------+
 | Database           |
 +--------------------+
