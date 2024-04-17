@@ -33,8 +33,8 @@ stress --cpu 4
 [OUTPUT]
 //copy the part representing vCPus, RAM and swap usage
 //tip : use two ssh sessions....
-    0[|||||||||||||||||||||||||||||||||||||||||||||||||||100.0%]   Tasks: 39, 410 thr; 2 running
-    1[|||||||||||||||||||||||||||||||||||||||||||||||||||100.0%]  Load average: 3.75 1.76 0.69 
+    0[||||||||||||||||||||||||||||||||||||||||||||||||||||||100.0%]   Tasks: 39, 410 thr; 2 running
+    1[||||||||||||||||||||||||||||||||||||||||||||||||||||||100.0%]  Load average: 3.75 1.76 0.69 
   Mem[|||||||||||||||||||||||||||||||||||||||||||||||||||272M/951M]   Uptime: 04:10:28
   Swp[|                                                 2.25M/635M]
 ```
@@ -80,8 +80,9 @@ aws ec2 describe-instances --filters "Name=tag:aws:autoscaling:groupName,Values=
 ```
 //TODO screenshot of the cloud watch alarm target tracking
 ```
+![CLD_AWS_CLOUDWATCH_ALARMHIGH_STATS2](./img/CLD_AWS_CLOUDWATCH_ALARMHIGH_STATS2.PNG)
 
-* ![CLD_AWS_CLOUDWATCH_ALARMHIGH_STATS2](./img/CLD_AWS_CLOUDWATCH_ALARMHIGH_STATS2.PNG)(Scale-OUT) As soon as all 4 instances have started, end stress on the main machine.
+(Scale-OUT) As soon as all 4 instances have started, end stress on the main machine.
 
 [Change the default cooldown period](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-scaling-cooldowns.html)
 
@@ -89,13 +90,19 @@ aws ec2 describe-instances --filters "Name=tag:aws:autoscaling:groupName,Values=
 //TODO screenshot from cloud watch metric
 ```
 
+![CLD_AWS_CLOUDWATCH_CPU_METRICSLOW2](./img/CLD_AWS_CLOUDWATCH_CPU_METRICSLOW2.png)
+
 ```
 //TODO screenshot of ec2 instances list (terminated state)
 ```
 
+![CLD_AWS_EC2_LIST_TEMINATE2](./img/CLD_AWS_EC2_LIST_TEMINATE2.png)
+
 ```
 //TODO screenshot of the activity history
 ```
+
+![CLD_AWS_ASG_ACTIVITY_HISTORY_END2](./img/CLD_AWS_ASG_ACTIVITY_HISTORY_END2.png)
 
 ## Release Cloud resources
 
