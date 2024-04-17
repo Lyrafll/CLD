@@ -14,7 +14,7 @@
 * 1 RDS Database instance - started
 * 1 Elastic Load Balancer - started
 
-## Create a new launch configuration. 
+## Create a new launch template. 
 
 [AWS CLI Doc - create-launch template](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ec2/create-launch-template.html)
 
@@ -34,7 +34,7 @@
 
 ```
 [INPUT]
-//cli command
+//cli command is optionnal. Important is the screen shot to delivery in next step (testing and validation)
 aws ec2 create-launch-template --launch-template-name "LT-DEVOPSTEAM11" --launch-template-data '{"ImageId": "ami-0cd63b7a25932eb7e", "InstanceType": "t3.micro", "KeyName": "CLD_KEY_DRUPAL_DEVOPSTEAM11", "SecurityGroupIds": ["sg-09866346f8d32d27d"]}'
 
 [OUTPUT]
@@ -85,7 +85,7 @@ aws ec2 create-launch-template --launch-template-name "LT-DEVOPSTEAM11" --launch
 
 ```
 [INPUT]
-//cli command
+//cli command is optionnal. Important is the screen shot to delivery in next step (testing and validation)
 aws autoscaling create-auto-scaling-group \
 	--auto-scaling-group-name "ASGRP_DEVOPSTEAM11" \
 	--min-size 1 \
@@ -100,6 +100,7 @@ aws autoscaling create-auto-scaling-group \
 	--tags "ResourceId=ASGRP_DEVOPSTEAM11,ResourceType=auto-scaling-group,Key=Name,Value=AUTO_EC2_PRIVATE_DRUPAL_DEVOPSTEAM11,PropagateAtLaunch=true" \
 	--health-check-grace-period 10 \
 	--default-instance-warmup 30
+
 
 [NO OUTPUT]
 
