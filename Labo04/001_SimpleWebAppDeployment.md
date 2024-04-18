@@ -56,7 +56,7 @@ Create a simple web application as follows.
    `HelloAppEngine` file. What does the code do?
 
    ```
-   //TODO
+   This code defines a web application which, when consulted via a browser, displays information on the Java version in use, while a separate method provides information on the Java version, operating system and server user.
    ```
 
 6. Note the annotation starting with `@WebServlet` in front of the
@@ -66,14 +66,14 @@ Create a simple web application as follows.
    `web.xml`. What information does it contain? And what is its use ?
 
    ```
-   //TODO
+   The web.xml file in a Java web project is a configuration file that tells the web server how to manage the application. It can indicate which file to display first when visiting the site (such as the index.jsp file mentioned in our example), and it can include other settings for the application's operation. Basically, it helps organize and control how the web application behaves and responds to user requests.
    ```
 
 8. Inspect the Google App Engine configuration file
    `appengine-web.xml` in `webapp/WEB-INF`. What information does it contain?
 
    ```
-   //TODO
+   The appengine-web.xml file is a configuration document used to define the basic parameters of a web application hosted on Google App Engine. It specifies the Java version used, ensures that the application can handle multiple users simultaneously, and configures certain aspects of the event log. This file thus helps to adapt the application to its operating environment on Google's cloud.
    ```
 
 9. Edit the Google App Engine configuration file as follows:
@@ -85,7 +85,7 @@ Create a simple web application as follows.
     `index.jsp` spotted in `web.xml`. What is its use ?
 
     ```
-    //TODO
+    The index.jsp file you mentioned is like the main page of a website that's part of an app running on Google's cloud. This main page shows a welcome message and some information that updates based on what the app is doing. It also has a link to another part of the app where users can go to see different content. Essentially, index.jsp is the first thing users see when they visit the app, and it helps them navigate to other areas of the site.
     ```
 
 ---
@@ -129,9 +129,9 @@ Create a simple web application as follows.
         - Go to the upper right corner of the IDE. You have a list of
           build destinations. Set the list to **Google App Engine
           Deployment** Run the project with the play button on the right.
-
+        
           **Note**: You might need to grant `Storage Object Viewer` permission to your service account (the service account is _not_ your own account. It is a special account linked to your project used by Google. It can be found in the logs if you try to deploy for the first time. More information here <https://cloud.google.com/iam/docs/service-accounts>). To achieve this, go to **Cloud Storage** service and select the bucket that requires to set the permission. In the **Permission** tab, add a new permission where **New principals** is the service account for your project (given in the logs), and the role is `Storage Object Viewer`. Re-run your build configuration and the application should be deployed.
-
+        
         - Observe the messages of the deployment process in the **Run**
           view, then the **Services** view. You should see a message like this Deployed service [default] to https://20200406t150557-dot-labgae.appspot.com]`. Click on the link to verify that it works.
 
@@ -155,17 +155,21 @@ Deliverables:
   **appengine-web.xml** and **index.jsp** files in a few sentences.
 
   ```
-  //TODO Java class files
+  //Java class files
+  The Java class file HelloAppEngine.java is a servlet that handles HTTP GET requests by displaying the current Java version and the App Engine version on which it's running. It is part of the ch.heigvd.cld.lab package and uses annotations to map itself to a specific URL path (/hello). This servlet also includes a method that gathers information about the system's Java version, operating system, and the current user, which can be accessed from other parts of the application, such as JSP pages.
   ```
-
+  
   ```
-  //TODO web.xml
+  //web.xml
+  The web.xml file is a configuration file for Java web applications which sets up index.jsp as the initial page that users will see when they visit the app. This XML file adheres to the Java EE standard for web applications, specifying settings that are essential for the deployment and execution of the web components.
   ```
-
+  
   ```
-  //TODO appengine-web.xml
+  //appengine-web.xml
+  appengine-web.xml is for applications running on Google App Engine. It specifies the Java runtime environment, ensures the application can use Google's APIs, and is set up for concurrent handling by making it thread-safe. It also includes custom system properties that can influence the runtime behavior, such as logging configurations.
   ```
-
+  
   ```
-  //TODO index.jsp
+  //index.jsp
+  index.jsp is the front page of the web application, formatted with HTML and JSP tags. It dynamically displays the system information using the HelloAppEngine.getInfo() method and provides a link to the servlet created in the Java class. It also includes a stylish touch by using a specific Google Font, enhancing the visual appeal of the greeting message displayed on the page. This JSP page serves as the interface that interacts with the user, presenting information and links to navigate further within the application.
   ```

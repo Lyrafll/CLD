@@ -82,9 +82,15 @@ To develop and test the Servlet perform the following steps:
 Deliverables:
 
 ```
-//TODO - Commit and publish the servlet in your repo, in the 'labo4' directory.
+//Commit and publish the servlet in your repo, in the 'labo4' directory.
 ```
 
+You can find the servlet [here](./cld-gae).
+
 ```
-//TODO - Copy a screenshot of the local and the App Engine console with the Datastore Viewer.
+//Screenshot of the local and the App Engine console with the Datastore Viewer.
 ```
+
+![local_datastore](./img/local_datastore.png)
+
+![google_datastore](./img/google_datastore.png)
