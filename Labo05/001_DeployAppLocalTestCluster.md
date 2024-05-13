@@ -147,7 +147,7 @@ Note that the container runs on port: 8080
 It also needs to be initialized with the following environment variables (check how `api-pod.yaml` defines environment variables):
 
   * `API_ENDPOINT_URL`: URL where the API can be accessed e.g., <http://localhost:9000>
-    * *What value must be set for this URL ?*
+    * *What value must be set for this URL ?*  "http://api-svc:8081"
 
 > Hint: remember that anything you define as a Service will be assigned a DOMAIN that is visible via DNS everywhere in the cluster and a PORT.
 
@@ -175,19 +175,19 @@ You should see the application's main page titled __Todos V2__ and you should be
 
 Document any difficulties you faced and how you overcame them. Copy the object descriptions into the lab report.
 
-> // TODO
-
-```````
-// TODO object descriptions
-```````
+On Windows enable Kubernetes on Docker Desktop otherwise it doesn't work.
 
 ```yaml
 # api-svc.yaml
 ```
 
+[api-svc](./files/api-svc.yaml)
+
 ```yaml
 # frontend-pod.yaml
 ```
+
+[frontend-pod.yaml](./files/frontend-pod.yaml)
 
 > [!TIP]
 >
@@ -228,4 +228,3 @@ Document any difficulties you faced and how you overcame them. Copy the object d
 > $ apt-get update
 > $ apt-get install curl
 > ```
-> 
