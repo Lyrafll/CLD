@@ -72,7 +72,7 @@ When I created the first cluster I set the region to europe-west1 and it wouldn'
 ```
 # frontend-svc.yaml
 ```
-[api-svc](./files/api-svc.yaml)
+[frontend-svc.yaml](./files/frontend-svc.yaml.yaml)
 
 Take a screenshot of the cluster details from the GKE console. Copy the output of the `kubectl describe` command to describe your load balancer once completely initialized.
 ![Cluster basics](./img/clusterBasics.png)
