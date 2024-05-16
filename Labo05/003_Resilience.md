@@ -48,14 +48,14 @@ You may also use `kubectl get all` repeatedly to see a list of all resources.  Y
     > we can check the status of the pod with the command kubectl get pods --watch
     >
     > kubectl get pods --watch
-    > NAME                                READY   STATUS        RESTARTS   AGE
-    > api-deployment-6969bc9997-2wpq6     1/1     Running       0          11m
-    > api-deployment-6969bc9997-9r8q7     1/1     Running       0          11m
-    > frontend-deploy-6f55bbc9c9-qbdnj    1/1     Running       0          11m
-    > frontend-deploy-6f55bbc9c9-zsmmb    1/1     Running       0          11m
-    > redis-deployment-5ffcf7fbfc-z9wkw   1/1     Running       0          3m
-    >
-    >
+    ```
+    NAME                                READY   STATUS        RESTARTS   AGE
+    api-deployment-6969bc9997-2wpq6     1/1     Running       0          11m
+    api-deployment-6969bc9997-9r8q7     1/1     Running       0          11m
+    frontend-deploy-6f55bbc9c9-qbdnj    1/1     Running       0          11m
+    frontend-deploy-6f55bbc9c9-zsmmb    1/1     Running       0          11m
+    redis-deployment-5ffcf7fbfc-z9wkw   1/1     Running       0          3
+    ```
     > If we delete one of the pod the status will be in `Terminating` state and then will be deleted an other pod will be created almost instantaneously, in less than a second .
     
   * What happens when you delete the Redis Pod?
@@ -68,11 +68,17 @@ You may also use `kubectl get all` repeatedly to see a list of all resources.  Y
     
   * What autoscaling features are available? Which metrics are used?
 
-    > Horizontal Pod Autoscaler: horizontal autoscaling by increasing the number of pods
-    >
-    > Vertical Pod Autoscaling: Increase pod resources directly
-    >
-    > Use of CPU, memory, network, etc.
+    > Horizontal Pod Autoscaler (HPA):
+    > 
+    > Functionality: It automatically scales the number of Pods in a replication controller, deployment, replica set, or stateful set.
+    > 
+    > Metrics Used: By default, HPA uses observed CPU utilization, but it can also scale based on custom metrics provided either by Kubernetes or an external metrics server.
+    > 
+    > Vertical Pod Autoscaler (VPA):
+    > 
+    > Functionality: VPA adjusts the CPU and memory resource requests of pods in a Kubernetes pod, deployment, or replica set according to their load, without changing the number of pods.
+    > 
+    > Metrics Used: Primarily CPU and memory usage of the pods.
     
   * How can you update a component? (see "Updating a Deployment" in the deployment documentation)
 
@@ -112,7 +118,7 @@ Load-test using Vegeta (500 requests should be enough).
 
 Document your observations in the lab report. Document any difficulties you faced and how you overcame them. Copy the object descriptions into the lab report.
 
-> We spent a lot of time trying to figure out why the redis pod couldn't communicate with the api.
+> We spent a lot of time trying to figure out why the redis pod couldn't communicate with the api. In the end, it was just a matter of communication between the machines that posed a problem, which was solved with the solution indicated above.
 >
 > As indicated, it is not possible to view the autoscale directly with the default dashboard, but using the indicate command you can see that the autoscale is working as expected.
 
